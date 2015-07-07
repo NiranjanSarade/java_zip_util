@@ -1,0 +1,24 @@
+(1) The rubyzip gem does not support creating a zip file exceeding 4 GB size.
+It throws some weird errors - refer below
+
+https://github.com/rubyzip/rubyzip/issues/82 
+https://www.ruby-forum.com/topic/211146 
+
+There is an option in rubyzip library to enable ZIP64 support - 
+Zip.write_zip64_support = true, by default this is disabled.
+
+(2) Also, the unix zip utility has some size constraints - refer below -
+http://superuser.com/questions/319562/linux-zip-greater-than-4gb
+The zip tool needs to be upgraded to one that supports Zip64, i.e. Zip 3.0
+Basically, ZIP64_SUPPORT needs to be enabled in zip compilation options to store large files in archives.
+
+(3) The better option is java.util.zip which does not have size limitation and is pretty fast as well.
+
+With JRuby, you can make use of Java libraries in Ruby effectively.
+The JavaZipUtil class offers some useful methods like zip file with specific extensions, extraction of all files and extraction of selective files.
+
+
+
+
+
+
